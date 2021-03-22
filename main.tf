@@ -15,7 +15,7 @@ resource "aws_kinesis_firehose_delivery_stream" "kinesis_firehose" {
 
   splunk_configuration {
     hec_endpoint               = var.hec_url
-    hec_token                  = data.aws_kms_secrets.splunk_hec_token.plaintext["hec_token"]
+    hec_token                  = trimspace(data.aws_kms_secrets.splunk_hec_token.plaintext["hec_token"])
     hec_acknowledgment_timeout = var.hec_acknowledgment_timeout
     hec_endpoint_type          = var.hec_endpoint_type
     s3_backup_mode             = var.s3_backup_mode
